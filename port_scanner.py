@@ -17,6 +17,10 @@ def portscan(port):
 for port in range (1, 1024):
     result = portscan(port)
     if result:
-        print("Port {} is open!".format(port))
+        try:
+            service = socket.getservbyport(port)
+        except:
+            service = "Unknown"
+        print("Port {} is open! [{}]".format(port, service))
     else: 
-        print("Port {} is closed!".format(port)) 
+        print("Port {} is closed!".format(port))
